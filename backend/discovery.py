@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 import unicodedata
 import string
+import re
 
 def get_characters(letter):
+    print letter
     if letter in string.ascii_lowercase:
-        search = 'SMALL LETTER %s ' % letter.upper()
+        search = r'SMALL LETTER %s\b' % letter.upper()
     else:
-        search = 'CAPITAL LETTER %s ' % letter
+        search = r'CAPITAL LETTER %s\b' % letter
 
     characters = []
-    for i in range(0xFFFF):
+    for i in range(0xFFFFF):
         c = unichr(i)
         try:
             name = unicodedata.name(c)
         except ValueError as e:
             continue
 
-        if name.find(search) >= 0:
+        if re.search(search, name):
             characters.append(c)
 
     return ''.join(characters)
