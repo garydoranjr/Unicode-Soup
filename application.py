@@ -1,9 +1,6 @@
-import cgi
 import os.path
 
-from google.appengine.api import users
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
 from backend.soup import soupify
 from google.appengine.ext.webapp import template
@@ -23,7 +20,7 @@ class MainPage(webapp.RequestHandler):
           </html>""")
 
 
-class Guestbook(webapp.RequestHandler):
+class FacebookPost(webapp.RequestHandler):
     def post(self):
         msg = soupify(self.request.get('message'))
         path = os.path.join(os.path.dirname(__file__), "post.html")
@@ -32,10 +29,11 @@ class Guestbook(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
-                                      ('/post', Guestbook)],
+                                      ('/post', FacebookPost)],
                                      debug=True)
 
 def main():
+    from google.appengine.ext.webapp.util import run_wsgi_app
     run_wsgi_app(application)
 
 if __name__ == "__main__":
