@@ -10,9 +10,7 @@
 	message: '{{soup|escapejs}}'
       },
       function(response) {
-        if (response && response.post_id) {
-          alert('Post was published.');
-        } else {
+        if (!(response && response.post_id)) {
           alert('Post was not published.');
         }
 	window.location="http://unicodesoup.appspot.com/";
