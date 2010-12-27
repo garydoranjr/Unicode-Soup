@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Unicode Soup</title>
+    <script language="javascript">
+      function PostTo(suffix) {
+        document.soupform.action = suffix;
+        document.soupform.submit();
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <form name="soupform" method="post">
+      <div><textarea name="message" rows="3" cols="60"></textarea></div>
+      <div>
+        <input type="button" value="Soupify" onclick="return PostTo('/soup');">
+        <input type="button" value="Facebook" onclick="return PostTo('/post');">
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Unicode Soup</title>
+    <script language="javascript">
+      function PostTo(suffix) {
+        document.soupform.action = suffix;
+        document.soupform.submit();
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    {{soup|escape}}
+    <form name="soupform" method="post">
+      <input type="hidden" name="message" value="{{message|escape}}"></textarea>
+      <input type="hidden" name="soup" value="{{soup|escape}}"></textarea>
+      <input type="button" value="Re-Soup" onclick="return PostTo('/soup');">
+      <input type="button" value="Facebook" onclick="return PostTo('/post');">
+    </form>
+  </body>
+</html>
